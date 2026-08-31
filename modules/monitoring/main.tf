@@ -1,8 +1,8 @@
 # https://learn.microsoft.com/azure/templates/microsoft.insights/datacollectionendpoints?pivots=deployment-language-terraform
 resource "azapi_resource" "dce_msprom" {
   location  = var.location
-  name      = local.msprom_data_collection_name
-  parent_id = var.parent_id
+  name      = local.dce_msprom_name
+  parent_id = local.data_collection_parent_id
   type      = var.resource_types.insights_data_collection_endpoints
   body = {
     kind       = "Linux"
@@ -28,8 +28,8 @@ resource "azapi_resource" "dce_msprom" {
 # https://learn.microsoft.com/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-terraform
 resource "azapi_resource" "dcr_msprom" {
   location  = var.location
-  name      = local.msprom_data_collection_name
-  parent_id = var.parent_id
+  name      = local.dcr_msprom_name
+  parent_id = local.data_collection_parent_id
   type      = var.resource_types.insights_data_collection_rules
   body = {
     kind = "Linux"
@@ -445,8 +445,8 @@ resource "azapi_resource" "prg_k8s" {
 # https://learn.microsoft.com/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-terraform
 resource "azapi_resource" "dcr_msci" {
   location  = var.location
-  name      = "MSCI-${var.location}-${basename(var.aks_cluster_id)}"
-  parent_id = var.parent_id
+  name      = local.dcr_msci_name
+  parent_id = local.data_collection_parent_id
   type      = var.resource_types.insights_data_collection_rules
   body = {
     kind = "Linux"
