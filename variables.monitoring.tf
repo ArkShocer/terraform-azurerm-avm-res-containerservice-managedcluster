@@ -39,3 +39,40 @@ Make sure to to also specify `var.azure_monitor_profile`,
 Ensure that `kube_state_metrics` are configured.
 DESCRIPTION
 }
+
+variable "data_collection_parent_id" {
+  type        = string
+  default     = null
+  description = <<DESCRIPTION
+Resource group id in which to create the data collection endpoint and data collection rules. Defaults to `parent_id` when not set.
+DESCRIPTION
+}
+
+variable "data_collection_endpoint_name" {
+  type        = string
+  default     = null
+description = <<DESCRIPTION
+Name for the MSProm data collection endpoint. Defaults to the generated name.
+DESCRIPTION
+
+  validation {
+    condition     = var.data_collection_endpoint_name == null || try(length(var.data_collection_endpoint_name) <= 44, false)
+    error_message = "Data collection endpoint names must not exceed 44 characters."
+  }
+}
+
+variable "data_collection_rule_name" {
+  type        = string
+  default     = null
+  description = <<DESCRIPTION
+Name for the MSProm data collection rule. Defaults to the generated name.
+DESCRIPTION
+}
+
+variable "container_insights_data_collection_rule_name" {
+  type        = string
+  default     = null
+  description = <<DESCRIPTION
+Name for the Container Insights data collection rule. Defaults to the generated name.
+DESCRIPTION
+}
