@@ -8,7 +8,6 @@ module "monitoring" {
   log_analytics_workspace_id                   = var.addon_profile_oms_agent.config.log_analytics_workspace_resource_id
   parent_id                                    = var.parent_id
   prometheus_workspace_id                      = var.prometheus_workspace_id
-  data_collection_parent_id                    = var.data_collection_parent_id
   data_collection_endpoint_name                = var.data_collection_endpoint_name
   data_collection_rule_name                    = var.data_collection_rule_name
   container_insights_data_collection_rule_name = var.container_insights_data_collection_rule_name

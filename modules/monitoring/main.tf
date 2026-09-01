@@ -2,7 +2,7 @@
 resource "azapi_resource" "dce_msprom" {
   location  = var.location
   name      = local.dce_msprom_name
-  parent_id = local.data_collection_parent_id
+  parent_id = var.parent_id
   type      = var.resource_types.insights_data_collection_endpoints
   body = {
     kind       = "Linux"
@@ -29,7 +29,7 @@ resource "azapi_resource" "dce_msprom" {
 resource "azapi_resource" "dcr_msprom" {
   location  = var.location
   name      = local.dcr_msprom_name
-  parent_id = local.data_collection_parent_id
+  parent_id = var.parent_id
   type      = var.resource_types.insights_data_collection_rules
   body = {
     kind = "Linux"
@@ -446,7 +446,7 @@ resource "azapi_resource" "prg_k8s" {
 resource "azapi_resource" "dcr_msci" {
   location  = var.location
   name      = local.dcr_msci_name
-  parent_id = local.data_collection_parent_id
+  parent_id = var.parent_id
   type      = var.resource_types.insights_data_collection_rules
   body = {
     kind = "Linux"
