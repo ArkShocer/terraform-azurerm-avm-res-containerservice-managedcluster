@@ -6,4 +6,10 @@ locals {
   msprom_data_collection_truncated_name      = "${local.msprom_data_collection_name_prefix}${local.msprom_data_collection_truncated_name_part}-${local.name_hash}"
   msprom_data_collection_truncated_name_part = trimsuffix(substr(local.aks_cluster_name, 0, max(1, 44 - length(local.msprom_data_collection_name_prefix) - 1 - length(local.name_hash))), "-")
   name_hash                                  = substr(sha1(local.aks_cluster_name), 0, 8)
+  dce_msprom_name                            = coalesce(var.data_collection_endpoint_name, local.msprom_data_collection_name)
+  dcr_msprom_name                            = coalesce(var.data_collection_rule_name, local.msprom_data_collection_name)
+  dcr_msci_name                              = coalesce(var.container_insights_data_collection_rule_name, "MSCI-${var.location}-${basename(var.aks_cluster_id)}")
+  prg_k8s_name  = coalesce(var.kubernetes_recording_rule_group_name, "KubernetesRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}")
+  prg_node_name = coalesce(var.node_recording_rule_group_name, "NodeRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}")
+  prg_ux_name   = coalesce(var.ux_recording_rule_group_name, "UXRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}")
 }

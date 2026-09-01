@@ -1,7 +1,7 @@
 # https://learn.microsoft.com/azure/templates/microsoft.insights/datacollectionendpoints?pivots=deployment-language-terraform
 resource "azapi_resource" "dce_msprom" {
   location  = var.location
-  name      = local.msprom_data_collection_name
+  name      = local.dce_msprom_name
   parent_id = var.parent_id
   type      = var.resource_types.insights_data_collection_endpoints
   body = {
@@ -28,7 +28,7 @@ resource "azapi_resource" "dce_msprom" {
 # https://learn.microsoft.com/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-terraform
 resource "azapi_resource" "dcr_msprom" {
   location  = var.location
-  name      = local.msprom_data_collection_name
+  name      = local.dcr_msprom_name
   parent_id = var.parent_id
   type      = var.resource_types.insights_data_collection_rules
   body = {
@@ -135,7 +135,7 @@ resource "azapi_resource" "dce_msprom_aks" {
 # https://learn.microsoft.com/azure/templates/microsoft.alertsmanagement/prometheusrulegroups?pivots=deployment-language-terraform
 resource "azapi_resource" "prg_node" {
   location  = var.location
-  name      = "NodeRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}"
+  name      = local.prg_node_name
   parent_id = var.parent_id
   type      = var.resource_types.alertsmanagement_prometheus_rule_groups
   body = {
@@ -214,7 +214,7 @@ resource "azapi_resource" "prg_node" {
 # https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default
 resource "azapi_resource" "prg_ux" {
   location  = var.location
-  name      = "UXRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}"
+  name      = local.prg_ux_name
   parent_id = var.parent_id
   type      = var.resource_types.alertsmanagement_prometheus_rule_groups
   body = {
@@ -322,7 +322,7 @@ resource "azapi_resource" "prg_ux" {
 
 resource "azapi_resource" "prg_k8s" {
   location  = var.location
-  name      = "KubernetesRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}"
+  name      = local.prg_k8s_name
   parent_id = var.parent_id
   type      = var.resource_types.alertsmanagement_prometheus_rule_groups
   body = {
@@ -445,7 +445,7 @@ resource "azapi_resource" "prg_k8s" {
 # https://learn.microsoft.com/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-terraform
 resource "azapi_resource" "dcr_msci" {
   location  = var.location
-  name      = "MSCI-${var.location}-${basename(var.aks_cluster_id)}"
+  name      = local.dcr_msci_name
   parent_id = var.parent_id
   type      = var.resource_types.insights_data_collection_rules
   body = {
