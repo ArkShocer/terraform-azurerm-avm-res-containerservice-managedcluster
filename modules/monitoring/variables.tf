@@ -146,3 +146,27 @@ DESCRIPTION
     error_message = "Data collection rule names must not exceed 44 characters."
   }
 }
+
+variable "kubernetes_recording_rule_group_name" {
+  type        = string
+  default     = null
+  description = <<DESCRIPTION
+Name for the Kubernetes Prometheus recording rules rule group. Defaults to `KubernetesRecordingRulesRuleGroup - <cluster>`.
+DESCRIPTION
+}
+
+variable "node_recording_rule_group_name" {
+  type        = string
+  default     = null
+  description = <<DESCRIPTION
+Name for the node Prometheus recording rules rule group. Defaults to `NodeRecordingRulesRuleGroup - <cluster>`.
+DESCRIPTION
+}
+
+variable "ux_recording_rule_group_name" {
+  type        = string
+  default     = null
+  description = <<DESCRIPTION
+Name for the UX Prometheus recording rules rule group. Defaults to `UXRecordingRulesRuleGroup - <cluster>`.
+DESCRIPTION
+}

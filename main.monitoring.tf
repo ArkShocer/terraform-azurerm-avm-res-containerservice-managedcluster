@@ -11,6 +11,9 @@ module "monitoring" {
   data_collection_endpoint_name                = var.data_collection_endpoint_name
   data_collection_rule_name                    = var.data_collection_rule_name
   container_insights_data_collection_rule_name = var.container_insights_data_collection_rule_name
+  kubernetes_recording_rule_group_name         = var.monitoring_kubernetes_recording_rule_group_name
+  node_recording_rule_group_name               = var.monitoring_node_recording_rule_group_name
+  ux_recording_rule_group_name                 = var.monitoring_ux_recording_rule_group_name
   retry                                        = var.retry
   tags                                         = var.tags
   timeouts                                     = local.effective_timeouts

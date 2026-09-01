@@ -9,4 +9,7 @@ locals {
   dce_msprom_name                            = coalesce(var.data_collection_endpoint_name, local.msprom_data_collection_name)
   dcr_msprom_name                            = coalesce(var.data_collection_rule_name, local.msprom_data_collection_name)
   dcr_msci_name                              = coalesce(var.container_insights_data_collection_rule_name, "MSCI-${var.location}-${basename(var.aks_cluster_id)}")
+  prg_k8s_name  = coalesce(var.kubernetes_recording_rule_group_name, "KubernetesRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}")
+  prg_node_name = coalesce(var.node_recording_rule_group_name, "NodeRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}")
+  prg_ux_name   = coalesce(var.ux_recording_rule_group_name, "UXRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}")
 }

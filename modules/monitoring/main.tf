@@ -135,7 +135,7 @@ resource "azapi_resource" "dce_msprom_aks" {
 # https://learn.microsoft.com/azure/templates/microsoft.alertsmanagement/prometheusrulegroups?pivots=deployment-language-terraform
 resource "azapi_resource" "prg_node" {
   location  = var.location
-  name      = "NodeRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}"
+  name      = local.prg_node_name
   parent_id = var.parent_id
   type      = var.resource_types.alertsmanagement_prometheus_rule_groups
   body = {
@@ -214,7 +214,7 @@ resource "azapi_resource" "prg_node" {
 # https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default
 resource "azapi_resource" "prg_ux" {
   location  = var.location
-  name      = "UXRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}"
+  name      = local.prg_ux_name
   parent_id = var.parent_id
   type      = var.resource_types.alertsmanagement_prometheus_rule_groups
   body = {
@@ -322,7 +322,7 @@ resource "azapi_resource" "prg_ux" {
 
 resource "azapi_resource" "prg_k8s" {
   location  = var.location
-  name      = "KubernetesRecordingRulesRuleGroup - ${basename(var.aks_cluster_id)}"
+  name      = local.prg_k8s_name
   parent_id = var.parent_id
   type      = var.resource_types.alertsmanagement_prometheus_rule_groups
   body = {
